@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Node.Js LED Control</title>
+    <meta name="viewport" content="width=400px" />
+    <script src="socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <p>Move Slider to Change Brightness of LED</p>
+<button id="FXX0" class="robot" onclick="trigger(this.id)">FORWARD</button>
+<button id="BXX1" class="robot" onclick="trigger(this.id)">REVERSE</button>
+<button id="RXX2" class="robot" onclick="trigger(this.id)">RIGHT</button>
+<button id="LXX3" class="robot" onclick="trigger(this.id)">LEFT</button>
+<button id="STP4" class="robot" onclick="trigger(this.id)">STOP</button>
+    <br><br>
+    <span id="outputText"></span>
+
+    <script type="text/javascript">
+        var socket = io.connect();
+
+        socket.on('cmd', function (data) {
+
+            document.getElementById("outputText").innerHTML = data.value;
+        });
+
+        function trigger(newValue) {
+
+            socket.emit('cmd', { value: parseInt(newValue[3])});
+        }
+    </script>
+</body>
+
+</html>
