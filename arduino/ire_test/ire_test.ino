@@ -1,8 +1,5 @@
 float RPS_prev=0;
-
-
 #define encoderZ 2
-
 float RPS=0;
 long counter = 0;
 long lastTime = 0;
