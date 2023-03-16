@@ -1,17 +1,67 @@
 {
   
 
-  "name" : "control",
+  "name": "control",
+  
 
   "scripts": {
-    "start" : "node control.js"
-  },
+  
 
+    
+
+  "start": "nodemon index.js"
+  
+
+  },
+  
 
   "dependencies": {
-    "express": "^4.18.2",
-    "johnny-five": "^2.1.0",
-    "serialport": "^10.5.0",
-    "socket.io": "^4.5.4"
+  
+
+    
+
+  "chartjs-plugin-zoom": "^2.0.0",
+  
+
+    
+
+  "express": "^4.18.2",
+  
+
+    
+
+  "johnny-five": "^2.1.0",
+  
+
+    
+
+  "moment": "^2.29.4",
+  
+
+    
+
+  "momentjs": "^2.0.0",
+  
+
+    
+
+  "nodemon": "^2.0.21",
+  
+
+    
+
+  "python-shell": "^5.0.0",
+  
+
+    
+
+  "serialport": "^10.5.0",
+  
+
+    
+
+  "socket.io": "^4.5.4"
+  
+
   }
 }

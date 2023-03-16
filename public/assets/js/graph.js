@@ -1,20 +1,26 @@
-
 var xValues = [0];
 var yValues = [0];
 var rand = Math.random();
-var time=0;
-var energy=0;
-
+var time = 0;
+var energy = 0;
+var winddir = 0;
 function rpm() {
   rand = Math.random();
   var rpm = rand * 10 + 40;
   document.querySelector(".rpmval").innerHTML = Math.trunc(rpm);
-//   console.log(rpm | 0);
+  //   console.log(rpm | 0);
 }
 function wspeed() {
   var wspd = rand * 10 + 10;
   document.querySelector(".windspeed").innerHTML = Math.trunc(wspd);
-//   console.log(wspd | 0);
+  //   console.log(wspd | 0);
+}
+function wdir() {
+  var wdir = rand * 360;
+  document.querySelector(".windDir").innerHTML = Math.trunc(wdir);
+  document.querySelector(".pointer").style.transform =
+    "rotate(" + wdir + "deg)";
+  // document.querySelector(".pointer").style.transform = "rotate(50deg)";
 }
 var brakestatus = 1; //1 is on 0 false
 function powergen() {
@@ -27,7 +33,7 @@ function powergen() {
   }
   xValues.push(getFormattedDate());
   yValues.push(power | 0);
-  energy += (power * 500) / 1000;
+  energy += (power * 1000) / 1000;
   document.querySelector(".energytotal").innerHTML = energy | 0;
   new Chart("myChart", {
     type: "line",
@@ -64,10 +70,10 @@ function powergen() {
   //   console.log(power | 0);
   // console.log(xValues,yValues);
 }
-setInterval(rpm, 500);
-setInterval(wspeed, 500);
-setInterval(powergen, 500);
-
+setInterval(rpm, 1000);
+setInterval(wspeed, 1000);
+setInterval(powergen, 1000);
+setInterval(wdir, 1000);
 
 function getFormattedDate() {
   let currentDate = new Date();

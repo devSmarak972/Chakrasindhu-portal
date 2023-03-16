@@ -6,7 +6,7 @@
  
 // Other encoder output to Arduino to keep track of wheel direction
 // Tracks the direction of rotation.
-#define ENC_IN_RIGHT_B 4
+#define ENC_IN_RIGHT_B 3
  
 // True = Forward; False = Reverse
 boolean Direction_right = true;

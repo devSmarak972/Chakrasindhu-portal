@@ -1,5 +1,5 @@
 float RPM_prev=0;
-#define THRESH 130
+#define THRESH 400
 // #define encoderZ 2
 // float RPS=0;
 long counter = 0;
@@ -12,7 +12,7 @@ long lastTime = 0;
  
 // Other encoder output to Arduino to keep track of wheel direction
 // Tracks the direction of rotation.
-#define ENC_IN_RIGHT_B 4
+#define ENC_IN_RIGHT_B 3
  
 // True = Forward; False = Reverse
 boolean Direction_right = true;
@@ -54,7 +54,7 @@ void setup() {
 }
  
 void loop() {
- RPM_prev=RPM;
+ RPM_prev=rpm_right;
   // Record the time
   currentMillis = millis();
  
@@ -72,35 +72,51 @@ void loop() {
     right_wheel_pulse_count = 0;
    
   }
-   if(rpm_right>THRESH)
+rpm_right=abs(rpm_right);
+// if(rpm_right!=0)
+// {
+// Serial.print("rpm_right ");
+// Serial.println(rpm_right);
+// Serial.print("RPM_prev");
+// Serial.println(RPM_prev);
+// }
+  // Serial.flush();
+if(rpm_right>THRESH)
   {  
   // digitalWrite(3, HIGH);
-   Serial.write("brakeapplied");
+  //  Serial.write("<brakeapplied>");
+    digitalWrite(8,HIGH );
+
+   Serial.write("1");
+  // Serial.println("Brake applied");
 
   //  Serial.write(buffer);
   }
+
   else if(rpm_right<THRESH && RPM_prev>THRESH)
   {
       // sprintf(buffer, "brakestopped:%f;%d",RPS,counter);
 
   //  Serial.write(buffer);
-   Serial.write("brakestopped");
+   digitalWrite(8,LOW );
+
+   Serial.write("0");
+  //  Serial.write("<brakestopped>");
+  // Serial.println("Brake stopped");
+  //  Serial.write(itoa(rpm_right));
   // digitalWrite(3, LOW);
   }
   if(Serial.available()){
   String data;
   data=Serial.readString();
   Serial.println(data);
-  // Serial.println(typeof(data));
    if(data[0]=='1')
    {
   digitalWrite(8,HIGH );
   Serial.write("applying brakes ..");
- //  Serial.println('1');
  }
  else if(data[0]=='0')
  {
-//  Serial.println('0');
  digitalWrite(8,LOW );
  Serial.write("stopping brakes ..");
 
@@ -114,18 +130,9 @@ void loop() {
  }
   
 }
+}
 
 
-
-
-
-
-
-
-  
-
-
- 
 // Increment the number of pulses by 1
 void right_wheel_pulse() {
    

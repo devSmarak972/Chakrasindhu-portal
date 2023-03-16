@@ -27,7 +27,7 @@ var wmo={
 99:"Thunderstorm",
 
 }
-const compassCircle = document.querySelector(".compass-circle");
+// const compassCircle = document.querySelector(".compass-circle");
 const startBtn = document.querySelector(".start-btn");
 const myPoint = document.querySelector(".my-point");
 let compass;
