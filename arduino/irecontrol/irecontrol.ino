@@ -6,11 +6,11 @@
  
 // Other encoder output to Arduino to keep track of wheel direction
 // Tracks the direction of rotation.
-#define ENC_IN_RIGHT_B 3
+#define ENC_IN_RIGHT_B 4
  
 // True = Forward; False = Reverse
 boolean Direction_right = true;
- 
+
 // Keep track of the number of right wheel pulses
 volatile long right_wheel_pulse_count = 0;
  
@@ -30,7 +30,8 @@ float ang_velocity_right_deg = 0;
  
 const float rpm_to_radians = 0.10471975512;
 const float rad_to_deg = 57.29578;
- 
+int val=1;
+
 void setup() {
  
   // Open the serial port at 9600 bps
@@ -82,8 +83,8 @@ void loop() {
 void right_wheel_pulse() {
    
   // Read the value for the encoder for the right wheel
-  int val = digitalRead(ENC_IN_RIGHT_B);
- 
+  val = digitalRead(ENC_IN_RIGHT_B);
+  Serial.println(val);
   if(val == LOW) {
     Direction_right = false; // Reverse
   }
