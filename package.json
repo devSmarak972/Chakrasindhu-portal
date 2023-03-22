@@ -9,7 +9,12 @@
 
     
 
-  "start": "nodemon index.js"
+  "start": "node index.js",
+  
+
+    
+
+  "ins": "node installscript.js"
   
 
   },
