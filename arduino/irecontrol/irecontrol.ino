@@ -1,5 +1,5 @@
 // Motor encoder output pulses per 360 degree revolution (measured manually)
-#define ENC_COUNT_REV 620
+#define ENC_COUNT_REV 1024
  
 // Encoder output to Arduino Interrupt pin. Tracks the pulse count.
 #define ENC_IN_RIGHT_A 2
